@@ -10,7 +10,7 @@ public class Problem_19_Sundays {
         int counter=0;
         for(int year=1901; year <= 2000; year++){
             for(int month=1; month<=12; month++){
-                date= LocalDate.of(year, month, 1);
+                date= LocalDate.of(Math.toIntExact(year), month, 1);
                 if(date.getDayOfWeek().equals(DayOfWeek.SUNDAY)){
                     counter++;
                 }
