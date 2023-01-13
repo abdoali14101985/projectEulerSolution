@@ -32,31 +32,13 @@ public class Problem_18_MaximumPathSum {
     }
 
     private static void maximumPathSum(List<List<Integer>> triangle) {
-        long sum =triangle.get(0).get(0);
-        int index = 0;
-        int down=-1, left=-1, right=-1;
+        for(int i=triangle.size()-2; i>=0; i--){
+            for(int j=0; j<triangle.get(i).size(); j++){
+                triangle.get(i).set(j, triangle.get(i).get(j)+ Math.max(triangle.get(i+1).get(j),triangle.get(i+1).get(j+1)));
 
-        for(int i=1; i< triangle.size(); i++){
-            long downSum=0, leftSum=0, rightSum=0;
-            //checking adjecent index of nextRow
-            if(index >= 0){
-                downSum = sum+ triangle.get(i).get(index);
-                rightSum = sum+ triangle.get(i).get(index+1);
-            }else {
-                downSum = sum + triangle.get(i).get(index);
-                rightSum = sum + triangle.get(i).get(index+1);
-                leftSum = sum + triangle.get(i).get(index-1);
-            }
-            if(downSum > leftSum  && downSum > rightSum){
-                sum = sum+ triangle.get(i).get(index);
-            } else if (leftSum > downSum && leftSum > rightSum){
-                sum = sum+ triangle.get(i).get(index-1);
-                index = index-1;
-            }else {
-                sum = sum+ triangle.get(i).get(index+1);
-                index = index+1;
             }
         }
-        System.out.println(sum);
+        System.out.println(triangle.get(0).get(0));
+
     }
 }
